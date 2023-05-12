@@ -2,7 +2,7 @@
 
 namespace UserLoginSample
 {
-    /// <summary>
+    /// <summary> 
     /// エラーページ（UserErrorPage.aspx）の表示内容
     /// </summary>
     public class ErrorInfo
