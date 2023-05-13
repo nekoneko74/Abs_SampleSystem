@@ -44,12 +44,9 @@
                 </tr>
             </table>
             <p></p>
-            <asp:GridView ID="GrdvUserList" runat="server" EmptyDataText="該当するユーザーデータは存在しません" ShowHeaderWhenEmpty="True" AllowPaging="True" OnRowEditing="GrdvUserList_RowEditing" OnRowDeleting="GrdvUserList_RowDeleting" BorderStyle="Solid" OnPageIndexChanging="GrdvUserList_PageIndexChanging" AutoGenerateColumns="False" OnRowDataBound="GrdvUserList_RowDataBound" OnRowCreated="GrdvUserList_RowCreated">
+            <asp:GridView ID="GrdvUserList" runat="server" EmptyDataText="該当するユーザーデータは存在しません" ShowHeaderWhenEmpty="True" AllowPaging="True" OnRowEditing="GrdvUserList_RowEditing" OnRowDeleting="GrdvUserList_RowDeleting" BorderStyle="Solid" OnPageIndexChanging="GrdvUserList_PageIndexChanging" AutoGenerateColumns="False" OnRowDataBound="GrdvUserList_RowDataBound">
                 <Columns>
                     <asp:CommandField InsertVisible="False" ShowCancelButton="False" ShowDeleteButton="True" ShowEditButton="True" />
-                    <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True">
-                    <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
                     <asp:BoundField DataField="Account" HeaderText="アカウント" ReadOnly="True">
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>

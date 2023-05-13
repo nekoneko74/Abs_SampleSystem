@@ -66,23 +66,6 @@ namespace UserLoginSample
         }
 
         /// <summary>
-        /// ユーザー一覧グリッドビューに「行」が生成される際に呼び出されるイベントハンドラ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void GrdvUserList_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-            // ヘッダ及びデータの「ID」列を非表示にする
-            // ⇒ ヘッダ列コントロールのプロパティでVisible=falseにしてしまうと、この「列」自体が生成されなくなる。
-            // 　 「列」が存在しないと後にRowEditing／RowDeletingイベントでID値を取得することができなくなるため、
-            // 　 この「行作成」イベントでヘッダとセルを非表示としている
-            if (DataControlRowType.Header == e.Row.RowType || DataControlRowType.DataRow == e.Row.RowType)
-            {
-                e.Row.Cells[1].Visible = false;
-            }
-        }
-
-        /// <summary>
         /// ユーザー一覧グリッドビューの行にデータがバインドされる際に呼び出されるイベントハンドラ
         /// </summary>
         /// <param name="sender"></param>
@@ -93,8 +76,8 @@ namespace UserLoginSample
             if (DataControlRowType.DataRow == e.Row.RowType)
             {
                 User rowData = (User)e.Row.DataItem;
-                e.Row.Cells[4].Text = (UserType.ADMIN == rowData.Type) ? "管理者" : "一般";
-                e.Row.Cells[6].Text = (true == rowData.DelFlg) ? "削除" : string.Empty;
+                e.Row.Cells[3].Text = (UserType.ADMIN == rowData.Type) ? "管理者" : "一般";
+                e.Row.Cells[5].Text = (true == rowData.DelFlg) ? "削除" : string.Empty;
             }
         }
 
@@ -106,7 +89,7 @@ namespace UserLoginSample
         protected void GrdvUserList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // 選択された行に該当するレコードの「ID値」をパラメータにしてユーザー詳細ページを「削除」モードで呼び出す
-            string userId = GrdvUserList.Rows[e.RowIndex].Cells[1].Text;
+            string userId = e.Keys[0].ToString();
             List<string> paramValues = new List<string>();
             paramValues.Add(String.Join("=", new string[] { PageMode.PARAM_NAME, PageMode.DELETE }));
             paramValues.Add(String.Join("=", new string[] { UserDetail.PARAM_NAME_ID, userId }));
@@ -122,7 +105,7 @@ namespace UserLoginSample
         protected void GrdvUserList_RowEditing(object sender, GridViewEditEventArgs e)
         {
             // 選択された行に該当するレコードの「ID値」をパラメータにしてユーザー詳細ページを「編集」モードで呼び出す
-            string userId = GrdvUserList.Rows[e.NewEditIndex].Cells[1].Text;
+            string userId = GrdvUserList.DataKeys[e.NewEditIndex].Values[0].ToString();
             List<string> paramValues = new List<string>();
             paramValues.Add(String.Join("=", new string[] { PageMode.PARAM_NAME, PageMode.EDIT }));
             paramValues.Add(String.Join("=", new string[] { UserDetail.PARAM_NAME_ID, userId }));
@@ -178,6 +161,7 @@ namespace UserLoginSample
             List<User> userList = UserDao.Select(account, type, displayName, incldueDeleted);
             GrdvUserList.DataSource = userList;
             GrdvUserList.PageIndex = pageIndex;
+            GrdvUserList.DataKeyNames = new string[] { "Id" };
             GrdvUserList.DataBind();
         }
     }
