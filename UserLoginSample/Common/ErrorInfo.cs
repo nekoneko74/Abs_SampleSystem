@@ -16,12 +16,12 @@
         public string Title { get; set; }
 
         /// <summary>
-        /// エラーページからさらに遷移する先のWebページのURL
+        /// 遷移先WebページのURL
         /// </summary>
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// エラーページからさらに遷移する先のWebページの名称
+        /// 遷移先Webページの名称
         /// </summary>
         public string LinkDisplayName { get; set; }
 
