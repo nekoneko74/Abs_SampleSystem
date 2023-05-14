@@ -13,7 +13,7 @@
             </p>
             <h2><asp:Label ID="LblTitle" runat="server" Text="ユーザー詳細"></asp:Label></h2>
             <asp:Label ID="LblWelcome" runat="server" Text="ようこそ"></asp:Label>
-            <asp:HyperLink ID="LnkLogout" runat="server" NavigateUrl="./UserLogout.aspx">ログアウト</asp:HyperLink>
+            <asp:HyperLink ID="LnkLogout" runat="server" NavigateUrl="./UserLogout.aspx" Text="ログアウト"></asp:HyperLink>
         </div>
         <div>
             <asp:Table ID="TblUserInfo" runat="server">

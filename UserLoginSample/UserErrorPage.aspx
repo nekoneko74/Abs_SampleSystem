@@ -12,7 +12,7 @@
                 <asp:Label ID="LblErrorMessage" runat="server" Text="エラーが発生しました<br>（エラー情報が設定されていません）"></asp:Label>
             </p>
             <p>
-                <asp:HyperLink ID="LnkToNextPage" runat="server" NavigateUrl="./UserLogin.aspx">トップページへ</asp:HyperLink>
+                <asp:HyperLink ID="LnkToNextPage" runat="server" NavigateUrl="./UserLogin.aspx" Text="トップページへ"></asp:HyperLink>
             </p>
         </div>
     </form>
