@@ -28,47 +28,56 @@
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ログインアカウント："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtAccount" runat="server" MaxLength="20" ReadOnly="True"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="Validator_TxtAccount_Required" runat="server" ControlToValidate="TxtAccount" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="ログインアカウントは必須項目です"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="Validator_TxtAccount_RegExp" runat="server" ControlToValidate="TxtAccount" ErrorMessage="RegularExpressionValidator" ValidationExpression="[A-Za-z][A-Za-z0-9\-_]*" Text="ログインアカウントに使用可能な文字は「英文字（大／小）、数字、ハイフン、アンダーバー」のみです。なお先頭の文字は「英文字（大／小）」のみとなります"></asp:RegularExpressionValidator>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server" Wrap="False">
+                        <asp:RequiredFieldValidator ID="Validator_TxtAccount_Required" runat="server" ControlToValidate="TxtAccount" ErrorMessage="ログインアカウントは必須項目です。" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="Validator_TxtAccount_MinLength" runat="server" ControlToValidate="TxtAccount" ErrorMessage="ログインアカウントは3文字上20文字以内で入力してください。" Display="Dynamic" ValidationExpression=".{3,20}"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="Validator_TxtAccount_RegExp" runat="server" ControlToValidate="TxtAccount" ErrorMessage="ログインアカウントに使用可能な文字は「英文字（大／小）、数字、ハイフン、アンダーバー」のみです。なお先頭の文字は「英文字（大／小）」のみです。" ValidationExpression="[A-Za-z][A-Za-z0-9\-_]*"></asp:RegularExpressionValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ログインパスワード："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" MaxLength="50"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="Validator_TxtPassword_Required" runat="server" ControlToValidate="TxtPassword" ErrorMessage="RequiredFieldValidator" Enabled="false" Text="ログインパスワードは必須項目です"></asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="Validator_TxtPassword_RegExp" runat="server" ControlToValidate="TxtPassword" ErrorMessage="RegularExpressionValidator" ValidationExpression="\w*" Text="ログインパスワードに使用可能な文字は「英大文字／英小文字、数字、記号」のみです"></asp:RegularExpressionValidator>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server" Wrap="False">
+                        <asp:RequiredFieldValidator ID="Validator_TxtPassword_Required" runat="server" ControlToValidate="TxtPassword" ErrorMessage="ログインパスワードは必須項目です。" Enabled="false" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="Validator_TxtPassword_RegExp" runat="server" ControlToValidate="TxtPassword" ErrorMessage="ログインパスワードに使用可能な文字は「英大文字／英小文字、数字、記号」のみです。" ValidationExpression="\w*"></asp:RegularExpressionValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="パスワード（確認）："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtPassConfirm" runat="server" TextMode="Password" MaxLength="50"></asp:TextBox>
-                        <asp:CompareValidator ID="Validator_TxtPassConfirm_Compare" runat="server" ControlToCompare="TxtPassConfirm" ControlToValidate="TxtPassword" ErrorMessage="CompareValidator" Text="確認用パスワードが一致しません"></asp:CompareValidator>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server" Wrap="False">
+                        <asp:CompareValidator ID="Validator_TxtPassConfirm_Compare" runat="server" ControlToCompare="TxtPassConfirm" ControlToValidate="TxtPassword" ErrorMessage="確認用パスワードが一致しません。"></asp:CompareValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="表示名："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtDisplayName" runat="server" MaxLength="50"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="Validator_TxtDisplayName_Required" runat="server" ControlToValidate="TxtDisplayName" ErrorMessage="RequiredFieldValidator" Text="表示名は必須項目です"></asp:RequiredFieldValidator>
+                    </asp:TableCell>
+                    <asp:TableCell runat="server" Wrap="False">
+                        <asp:RequiredFieldValidator ID="Validator_TxtDisplayName_Required" runat="server" ControlToValidate="TxtDisplayName" ErrorMessage="表示名は必須項目です。"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ユーザー種別："></asp:TableCell>
-                    <asp:TableCell runat="server" Wrap="False">
+                    <asp:TableCell runat="server" Wrap="False" ColumnSpan="2">
                         <asp:RadioButtonList ID="RdlUserType" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="最終更新日時："></asp:TableCell>
-                    <asp:TableCell runat="server" Wrap="False">
+                    <asp:TableCell runat="server" Wrap="False" ColumnSpan="2">
                         <asp:Label ID="LblLastUpdDate" runat="server" Text=""></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="最終更新者："></asp:TableCell>
-                    <asp:TableCell runat="server" Wrap="False">
+                    <asp:TableCell runat="server" Wrap="False" ColumnSpan="2">
                         <asp:Label ID="LblLastUpdUser" runat="server" Text=""></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
