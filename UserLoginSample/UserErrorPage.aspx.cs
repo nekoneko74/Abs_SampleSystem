@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace UserLoginSample
 {
@@ -25,7 +20,7 @@ namespace UserLoginSample
         protected void Page_Load(object sender, EventArgs e)
         {
             // セッション情報からエラー情報を取得する
-            ErrorInfo errInfo = (ErrorInfo)Session[UserErrorPage.ERROR_INFO_NAME];
+            ErrorInfo errInfo = Session[UserErrorPage.ERROR_INFO_NAME] as ErrorInfo;
             if (null != errInfo)
             {
                 // 設定されたエラー情報から画面を構成する
