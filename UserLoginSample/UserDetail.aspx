@@ -18,14 +18,14 @@
         <div>
             <asp:Table ID="TblUserInfo" runat="server">
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">ユーザーID：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ユーザーID："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:Label ID="LblUserId" runat="server" Text="自動採番"></asp:Label>
                         <asp:Label ID="LblDelFlg" runat="server" Text="（削除済み）" Visible="false"></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">ログインアカウント：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ログインアカウント："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtAccount" runat="server" MaxLength="20" ReadOnly="True"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="Validator_TxtAccount_Required" runat="server" ControlToValidate="TxtAccount" ErrorMessage="RequiredFieldValidator" Display="Dynamic" Text="ログインアカウントは必須項目です"></asp:RequiredFieldValidator>
@@ -33,7 +33,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">ログインパスワード：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ログインパスワード："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" MaxLength="50"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="Validator_TxtPassword_Required" runat="server" ControlToValidate="TxtPassword" ErrorMessage="RequiredFieldValidator" Enabled="false" Text="ログインパスワードは必須項目です"></asp:RequiredFieldValidator>
@@ -41,33 +41,33 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">パスワード（確認）：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="パスワード（確認）："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtPassConfirm" runat="server" TextMode="Password" MaxLength="50"></asp:TextBox>
                         <asp:CompareValidator ID="Validator_TxtPassConfirm_Compare" runat="server" ControlToCompare="TxtPassConfirm" ControlToValidate="TxtPassword" ErrorMessage="CompareValidator" Text="確認用パスワードが一致しません"></asp:CompareValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">表示名：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="表示名："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:TextBox ID="TxtDisplayName" runat="server" MaxLength="50"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="Validator_TxtDisplayName_Required" runat="server" ControlToValidate="TxtDisplayName" ErrorMessage="RequiredFieldValidator" Text="表示名は必須項目です"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">ユーザー種別：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ユーザー種別："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:RadioButtonList ID="RdlUserType" runat="server" RepeatDirection="Horizontal"></asp:RadioButtonList>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">最終更新日時：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="最終更新日時："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:Label ID="LblLastUpdDate" runat="server" Text=""></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False">最終更新者：</asp:TableCell>
+                    <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="最終更新者："></asp:TableCell>
                     <asp:TableCell runat="server" Wrap="False">
                         <asp:Label ID="LblLastUpdUser" runat="server" Text=""></asp:Label>
                     </asp:TableCell>
