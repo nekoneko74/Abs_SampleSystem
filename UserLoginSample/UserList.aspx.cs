@@ -13,13 +13,13 @@ namespace UserLoginSample
     public partial class UserList : WebPageBase
     {
         /// <summary>
-        /// 「新規追加」ボタンがクリックされた際に呼び出されるイベントハンドラ
+        /// 「新規登録」ボタンがクリックされた際に呼び出されるイベントハンドラ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void BtnAddNew_Click(object sender, EventArgs e)
         {
-            // ユーザー詳細ページを「新規追加モード」で呼び出す
+            // ユーザー詳細ページを「新規登録モード」で呼び出す
             List<string> paramValues = new List<string>();
             paramValues.Add(String.Join("=", new string[] { PageMode.PARAM_NAME, PageMode.ADD }));
             string url = "./UserDetail.aspx?" + String.Join("&", paramValues);

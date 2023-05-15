@@ -8,7 +8,7 @@ namespace UserLoginSample
     public class PageMode
     {
         /// <summary>
-        /// 処理モード：新規追加
+        /// 処理モード：新規登録
         /// </summary>
         public const string ADD = "ADD";
 

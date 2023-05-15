@@ -56,7 +56,7 @@ namespace UserLoginSample
                 {
                     Update();
                 }
-                // 処理モードが「新規追加」モードである
+                // 処理モードが「新規登録」モードである
                 else if (PageMode.ADD == HidPageMode.Value)
                 {
                     Insert();
@@ -283,7 +283,7 @@ namespace UserLoginSample
                                 BtnAction.Enabled = false;
                             }
                         }
-                        // 新規追加モードの場合の初期化処理を行う
+                        // 新規登録モードの場合の初期化処理を行う
                         else if (PageMode.ADD == HidPageMode.Value)
                         {
                             // タイトルと処理ボタンの名前を設定する
