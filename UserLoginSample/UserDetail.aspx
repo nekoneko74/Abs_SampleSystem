@@ -19,7 +19,7 @@
             <asp:Table ID="TblUserInfo" runat="server">
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" HorizontalAlign="Right" Wrap="False" Text="ユーザーID："></asp:TableCell>
-                    <asp:TableCell runat="server" Wrap="False">
+                    <asp:TableCell runat="server" Wrap="False" ColumnSpan="2">
                         <asp:Label ID="LblUserId" runat="server" Text="自動採番"></asp:Label>
                         <asp:Label ID="LblDelFlg" runat="server" Text="（削除済み）" Visible="false"></asp:Label>
                     </asp:TableCell>
