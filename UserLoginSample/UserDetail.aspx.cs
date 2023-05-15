@@ -12,6 +12,7 @@ namespace UserLoginSample
     /// </summary>
     public partial class UserDetail : WebPageBase
     {
+
         /// <summary>
         /// 処理対象のユーザーを指定するhttpパラメータ名
         /// </summary>
