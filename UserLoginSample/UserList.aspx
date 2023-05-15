@@ -29,8 +29,8 @@
                     <td><asp:TextBox ID="TxtDisplayName" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td style="text-align: right;">種別</td>
-                    <td><asp:DropDownList ID="DrLstTypeSelect" runat="server"></asp:DropDownList></td>
+                    <td style="text-align: right;">ユーザー種別</td>
+                    <td><asp:DropDownList ID="DrLstType" runat="server"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -51,7 +51,7 @@
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="DisplayName" HeaderText="表示名" ReadOnly="True" />
-                    <asp:BoundField DataField="Type" HeaderText="種別" ReadOnly="True">
+                    <asp:BoundField DataField="Type" HeaderText="ユーザー種別" ReadOnly="True">
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="UpdateDate" DataFormatString="{0:yyyy/MM/dd HH:mm:ss}" HeaderText="最終更新日時" ReadOnly="True">

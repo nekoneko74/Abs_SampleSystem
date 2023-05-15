@@ -36,7 +36,7 @@ namespace UserLoginSample
             // 検索条件をクリアする
             TxtAccount.Text = string.Empty;
             TxtDisplayName.Text = string.Empty;
-            DrLstTypeSelect.SelectedValue = "-1";
+            DrLstType.SelectedValue = "-1";
             ChkDelFlg.Checked = false;
 
             // 検索処理を行う
@@ -72,7 +72,7 @@ namespace UserLoginSample
         /// <param name="e"></param>
         protected void GrdvUserList_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            // 各行の「種別」「削除データ」列の表示内容をカスタマイズする
+            // 各行の「ユーザー種別」「削除データ」列の表示内容をカスタマイズする
             if (DataControlRowType.DataRow == e.Row.RowType)
             {
                 User rowData = (User)e.Row.DataItem;
@@ -129,10 +129,10 @@ namespace UserLoginSample
 
                 if (true != IsPostBack)
                 {
-                    // 「種別」のドロップダウンリストボックスに選択肢を設定する
-                    DrLstTypeSelect.Items.Add(new ListItem("選択してください", "-1"));
-                    DrLstTypeSelect.Items.Add(new ListItem("一般ユーザー", UserType.USER.ToString("d")));
-                    DrLstTypeSelect.Items.Add(new ListItem("管理者", UserType.ADMIN.ToString("d")));
+                    // 「ユーザー種別」のドロップダウンリストボックスに選択肢を設定する
+                    DrLstType.Items.Add(new ListItem("選択してください", "-1"));
+                    DrLstType.Items.Add(new ListItem("一般ユーザー", UserType.USER.ToString("d")));
+                    DrLstType.Items.Add(new ListItem("管理者", UserType.ADMIN.ToString("d")));
 
                     // （初期）検索処理を行う
                     Search();
@@ -150,7 +150,7 @@ namespace UserLoginSample
             string account = (true != String.IsNullOrEmpty(TxtAccount.Text)) ? TxtAccount.Text : null;
             string displayName = (true != String.IsNullOrEmpty(TxtDisplayName.Text)) ? TxtDisplayName.Text : null;
             int? type = null;
-            int typeSelect = Convert.ToInt32(DrLstTypeSelect.SelectedValue);
+            int typeSelect = Convert.ToInt32(DrLstType.SelectedValue);
             if ((int)UserType.ADMIN == typeSelect || (int)UserType.USER == typeSelect)
             {
                 type = typeSelect;

@@ -46,7 +46,7 @@ namespace UserLoginSample
                     // ログインに成功した
                     if (loginPassword == user.Password)
                     {
-                        // セッション情報に「ログイン種別＝ユーザー」と「ユーザーID」を保持する
+                        // セッション情報にログインしているユーザーの「ユーザーID」を保持する
                         CreateSession(user.Id);
 
                         // ユーザーメニュー画面に遷移する

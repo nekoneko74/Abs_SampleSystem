@@ -193,7 +193,7 @@ namespace UserLoginSample.Model.DAO
         /// ユーザーマスタ（user）テーブルからレコードのリストを取得する
         /// </summary>
         /// <param name="account">アカウント名で検索する場合に指定する</param>
-        /// <param name="type">種別で検索する場合に指定する</param>
+        /// <param name="type">ユーザー種別で検索する場合に指定する</param>
         /// <param name="displayName">表示名で検索する場合に指定する</param>
         /// <param name="delFlg">削除フラグが「1：削除済み」であるレコードを検索結果に含む場合に指定する</param>
         /// <returns>取得できたレコードのリスト</returns>
