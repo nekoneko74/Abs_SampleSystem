@@ -189,7 +189,7 @@ namespace UserLoginSample
                     TxtPassword.Text = string.Empty;
                     TxtPassConfirm.Text = string.Empty;
                     TxtDisplayName.Text = user.DisplayName;
-                    RdlUserType.SelectedValue = user.Type.ToString();
+                    RdlUserType.SelectedValue = user.Type.ToString("d");
                     LblLastUpdDate.Text = String.Format("{0:yyyy/MM/dd HH:mm:ss}", user.UpdateDate);
                     LblLastUpdUser.Text = lastUpdUser.DisplayName;
                     HidDelFlg.Value = (true == user.DelFlg) ? "1" : "0";
