@@ -1,7 +1,7 @@
 ﻿namespace UserLoginSample
 {
     /// <summary>
-    /// メッセージリスト
+    /// メッセージリスト 
     /// </summary>
     public class Messages
     {

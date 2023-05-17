@@ -5,7 +5,7 @@ namespace UserLoginSample
     /// <summary>
     /// エラーページ（UserErrorPage.aspx）
     /// </summary>
-    public partial class UserErrorPage : System.Web.UI.Page
+    public partial class UserErrorPage : WebPageBase
     {
         /// <summary>
         /// セッション情報内でのエラー情報の名称

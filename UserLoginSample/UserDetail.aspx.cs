@@ -172,7 +172,7 @@ namespace UserLoginSample
                     if (null == user)
                     {
                         // 指定されたユーザーIDを持つレコードを読み込むことが出来なかった
-                        throw new Exception(userId.ToString() + "は無効なユーザーIDです。");
+                        throw new Exception("ユーザー情報を読み込むことができませんでした（" + userId.ToString() + "は無効なユーザーIDです）。");
                     }
 
                     // 最終更新者のレコードを取得する
@@ -190,7 +190,7 @@ namespace UserLoginSample
                     TxtPassword.Text = string.Empty;
                     TxtPassConfirm.Text = string.Empty;
                     TxtDisplayName.Text = user.DisplayName;
-                    RdlUserType.SelectedValue = user.Type.ToString();
+                    RdlUserType.SelectedValue = user.Type.ToString("d");
                     LblLastUpdDate.Text = String.Format("{0:yyyy/MM/dd HH:mm:ss}", user.UpdateDate);
                     LblLastUpdUser.Text = lastUpdUser.DisplayName;
                     HidDelFlg.Value = (true == user.DelFlg) ? "1" : "0";
@@ -230,8 +230,8 @@ namespace UserLoginSample
                     try
                     {
                         // 「ユーザー種別」の選択用ラジオボタンを用意する
-                        RdlUserType.Items.Add(new ListItem("一般ユーザー", UserType.USER.ToString()));
-                        RdlUserType.Items.Add(new ListItem("管理者", UserType.ADMIN.ToString()));
+                        RdlUserType.Items.Add(new ListItem("一般ユーザー", UserType.USER.ToString("d")));
+                        RdlUserType.Items.Add(new ListItem("管理者", UserType.ADMIN.ToString("d")));
 
                         // 外部からの呼び出しパラメータ（処理モード、処理対象のユーザーID）を取得する
                         PageMode pageMode = new PageMode(Request.Params[PageMode.PARAM_NAME]);
@@ -299,7 +299,7 @@ namespace UserLoginSample
                             // ・最終更新日時／最終更新者の表示行を非表示にする
                             TxtAccount.ReadOnly = false;
                             Validator_TxtPassword_Required.Enabled = true;
-                            RdlUserType.SelectedValue = UserType.USER.ToString();
+                            RdlUserType.SelectedValue = UserType.USER.ToString("d");
                             TblUserInfo.Rows[6].Visible = false;
                             TblUserInfo.Rows[7].Visible = false;
                         }

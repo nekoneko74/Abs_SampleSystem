@@ -1,6 +1,8 @@
-﻿namespace UserLoginSample
+﻿using System.Text;
+
+namespace UserLoginSample
 {
-    /// <summary>
+    /// <summary> 
     /// エラーページ（UserErrorPage.aspx）の表示内容
     /// </summary>
     public class ErrorInfo
@@ -82,6 +84,22 @@
             Title = title;
             LinkUrl = linkUrl;
             LinkDisplayName = linkDisplayName;
+        }
+
+        /// <summary>
+        /// オブジェクトを表す文字列を取得する
+        /// </summary>
+        /// <returns>オブジェクトを表す文字列</returns>
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("<<<");
+            stringBuilder.AppendLine($" Message:{Message}");
+            stringBuilder.AppendLine($" Title:{Title}");
+            stringBuilder.AppendLine($" LinkUrl:{LinkUrl}");
+            stringBuilder.AppendLine($" LinkDisplayName:{LinkDisplayName}");
+            stringBuilder.Append(">>>");
+            return stringBuilder.ToString();
         }
     }
 }
