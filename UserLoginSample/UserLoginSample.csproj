@@ -136,6 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\SampleSystem.bak" />
+    <Content Include="Documents\0_RFP\XXXXシステムRFPシート（サンプル）.xlsx" />
+    <Content Include="Documents\1_要件定義\システム概要.drawio" />
+    <Content Include="Documents\1_要件定義\マスタースケジュール.xlsx" />
+    <Content Include="Documents\1_要件定義\機能一覧.xlsx" />
+    <Content Include="Documents\1_要件定義\要件定義書.docx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
