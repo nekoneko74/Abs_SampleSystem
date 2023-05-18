@@ -1,13 +1,12 @@
-﻿using UserLoginSample.Model.DAO;
-using UserLoginSample.Model.DTO;
-using System;
-using System.Text;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Web.UI.WebControls;
-using System.Collections.Specialized;
-using System.Diagnostics.Eventing.Reader;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using UserLoginSample.Model.DAO;
+using UserLoginSample.Model.DTO;
 
 namespace UserLoginSample
 {
@@ -122,14 +121,91 @@ namespace UserLoginSample
         }
 
         /// <summary>
-        /// ロードイベント前のポストバックデータが全て読み込まれた段階で呼び出されるイベントハンドラ
+        /// 【ユーティリティ】オブジェクトの保持している値を文字列化して取得する
+        /// </summary>
+        /// <param name="instance">処理対象のオブジェクト</param>
+        /// <returns>オブジェクトの保持している値を文字列化したもの</returns>
+        public static string GetValueString(object instance)
+        {
+            string retStr = string.Empty;
+
+            // 処理対象のオブジェクトが存在していない（nullである）
+            if (null == instance)
+            {
+                retStr = "null";
+            }
+            // 処理対象の何らかのオブジェクトが存在している
+            else
+            {
+                // 処理対象のオブジェクトの型情報を取得する
+                Type type = instance.GetType();
+
+                // 基本型／列挙型／文字列型である場合
+                if (true == type.IsPrimitive || true == type.IsEnum || instance is string)
+                {
+                    retStr = String.Format("({0}) {1}", type.Name, instance);
+                }
+                // 配列／コレクションである場合
+                else if (true == type.IsArray || instance is IEnumerable)
+                {
+                    // 配列／コレクションの各要素を文字列化する
+                    List<string> arrayMembers = new List<string>();
+                    int index = 0;
+                    foreach (object inner in (IEnumerable)instance)
+                    {
+                        arrayMembers.Add(String.Format("{0} : {1}", index, GetValueString(inner)));
+                        index++;
+                    }
+                    retStr = String.Format("({0}) [ {1} ]", type.Name, String.Join(", ", arrayMembers));
+                }
+                // オブジェクトである場合
+                else if (instance is object)
+                {
+                    // オブジェクトのメンバ／プロパティを文字列化する
+                    List<string> objectMembers = new List<string>();
+                    foreach (FieldInfo fieldInfo in type.GetRuntimeFields())
+                    {
+                        // 自動実装プロパティ用の隠しメンバは除外する
+                        Regex regExp = new Regex("\\A<.+>k__BackingField\\z");
+                        if (true == regExp.IsMatch(fieldInfo.Name))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            object value = fieldInfo.GetValue(instance);
+                            objectMembers.Add(String.Format("{0} : {1}", fieldInfo.Name, GetValueString(value)));
+                        }
+                    }
+                    foreach (PropertyInfo propInfo in type.GetProperties())
+                    {
+                        object value = propInfo.GetValue(instance);
+                        objectMembers.Add(String.Format("{0} : {1}", propInfo.Name, GetValueString(value)));
+                    }
+                    retStr = String.Format("({0}) {{ {1} }}", type.Name, String.Join(", ", objectMembers));
+                }
+                else
+                {
+                    retStr = String.Format("({0}) {1}", type.Name, instance);
+                }
+            }
+
+            // オブジェクトの保持している値を文字列化したものを返す
+            return retStr;
+        }
+
+        /// <summary>
+        /// ロードイベント前のポストバックデータが全て読み込まれた段階で呼び出される
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPreLoad(EventArgs e)
         {
             base.OnPreLoad(e);
 
-            Debug.WriteLine("*** START **********************************************");
+            string methodName = String.Format("{0}::{1}", GetType().FullName, MethodBase.GetCurrentMethod().Name);
+            string startMsg = String.Format(">>> {0} {1} ********************************************", "START", methodName);
+            string endMsg = String.Format("<<< {0} {1} **********************************************", "END", methodName);
+            Debug.WriteLine(startMsg);
 
             // デバッグ出力にプログラムの呼び出し情報を出力する
             Debug.WriteLine(String.Format("Program:{0}", this.AppRelativeVirtualPath));
@@ -140,29 +216,55 @@ namespace UserLoginSample
             }
             else
             {
-                // リクエストメソッド／クッキーの内容
+                // リクエストメソッド／リファラ
                 Debug.WriteLine(String.Format("Method:{0}", Request.Params["REQUEST_METHOD"]));
-                Debug.WriteLine(String.Format("Cookie:{0}", Request.Params["HTTP_COOKIE"]));
+                Debug.WriteLine(String.Format("Referer:{0}", Request.Params["HTTP_REFERER"]));
+            }
 
-                // セッション情報
-                Debug.WriteLine("*** Session ***");
-                foreach (string key in Session.Keys)
-                {
-                    Debug.WriteLine(String.Format("{0}:{1}", key, (null != Session[key]) ? Session[key].ToString() : "null"));
-                }
+            // クッキーの内容
+            Debug.WriteLine(String.Format("Cookie:{0}", Request.Params["HTTP_COOKIE"]));
 
-                // リクエストパラメータ
-                Debug.WriteLine("*** Parameter ***");
-                foreach (string key in Request.Params.AllKeys)
+            // セッション情報
+            Debug.WriteLine("*** Session ***");
+            foreach (string key in Session.Keys)
+            {
+                Debug.WriteLine(String.Format("{0}:{1}", key, GetValueString(Session[key])));
+            }
+
+            // リクエストパラメータ
+            Debug.WriteLine("*** Parameter ***");
+            foreach (string key in Request.Params.AllKeys)
+            {
+                if (-1 == Array.IndexOf(WebPageBase.excludeParamNames, key))
                 {
-                    if (-1 == Array.IndexOf(WebPageBase.excludeParamNames, key))
-                    {
-                        Debug.WriteLine(String.Format("{0}:{1}", key, Request.Params[key]));
-                    }
+                    Debug.WriteLine(String.Format("{0}:{1}", key, GetValueString(Request.Params[key])));
                 }
             }
 
-            Debug.WriteLine("*** END ************************************************");
+            Debug.WriteLine(endMsg);
+        }
+
+        /// <summary>
+        /// ページの処理が完了してメモリ上からアンロードされる際に呼び出される
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnUnload(EventArgs e)
+        {
+            base.OnUnload(e);
+
+            string methodName = String.Format("{0}::{1}", GetType().FullName, MethodBase.GetCurrentMethod().Name);
+            string startMsg = String.Format(">>> {0} {1} ********************************************", "START", methodName);
+            string endMsg = String.Format("<<< {0} {1} **********************************************", "END", methodName);
+            Debug.WriteLine(startMsg);
+
+            // セッション情報
+            Debug.WriteLine("*** Session ***");
+            foreach (string key in Session.Keys)
+            {
+                Debug.WriteLine(String.Format("{0}:{1}", key, GetValueString(Session[key])));
+            }
+
+            Debug.WriteLine(endMsg);
         }
 
         /// <summary>
