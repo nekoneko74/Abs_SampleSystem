@@ -19,6 +19,7 @@ namespace UserLoginSample
             // ログインアカウントとパスワードの入力欄をクリアする
             TxtLoginAccount.Text = string.Empty;
             TxtLoginPassword.Text = string.Empty;
+
         }
 
         /// <summary>
